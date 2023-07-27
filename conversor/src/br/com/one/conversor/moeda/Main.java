@@ -1,10 +1,12 @@
 package br.com.one.conversor.moeda;
 
+import br.com.one.conversor.moeda.model.ConversorMenu;
+
 public class Main {
 
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
-
+		ConversorMenu window = new ConversorMenu();
+		window.setVisible(true);
 	}
 
 }
