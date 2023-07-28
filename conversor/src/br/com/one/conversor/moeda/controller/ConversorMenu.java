@@ -1,4 +1,4 @@
-package br.com.one.conversor.moeda.model;
+package br.com.one.conversor.moeda.controller;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -54,7 +54,7 @@ public class ConversorMenu extends JFrame {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				String input = JOptionPane.showInputDialog("Insira um valor:");
-				JOptionPane.showMessageDialog(null, "Resultado: " + input);
+				JOptionPane.showInputDialog(null, "Escolha a moeda para a qual você deseja girar seu dinheiro:");
 			}
 		});
 
