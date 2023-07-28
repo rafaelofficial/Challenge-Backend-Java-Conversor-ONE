@@ -1,6 +1,6 @@
 package br.com.one.conversor.moeda;
 
-import br.com.one.conversor.moeda.model.ConversorMenu;
+import br.com.one.conversor.moeda.controller.ConversorMenu;
 
 public class Main {
 
