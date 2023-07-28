@@ -36,7 +36,16 @@ public class ConversorMenu extends JFrame {
 	private void exibeMenu() {
 		inicializaAtributosAdicionaOpcoesNoMenu();
 
-		opcaoSair.addActionListener(new ActionListener() {
+		this.opcaoConversorMoeda.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+		});
+		
+		this.opcaoSair.addActionListener(new ActionListener() {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
