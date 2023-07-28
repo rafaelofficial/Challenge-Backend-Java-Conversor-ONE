@@ -18,47 +18,15 @@ public class ConversorMenu extends JFrame {
 	private JMenuItem opcaoConversorMoeda;
 	private JMenuItem opcaoConversorTemperatura;
 	private JMenuItem opcaoSair;
-	private String conversorDeMoeda;
-	private String conversorDeTemperatura;
+	private String conversorDeMoeda = "Conversor de Moeda";
+	private String conversorDeTemperatura = "Conversor de Temperatura";
 
 	public ConversorMenu() {
 		setSize(400, 300);
 		setTitle("Menu");
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
-
-		JPanel painel = new JPanel();
-
-		exibeMenu();
-		painel.add(this.menuBar);
-		add(painel);
-	}
-
-	private void exibeMenu() {
-		inicializaAtributosAdicionaOpcoesNoMenu();
-
-		this.opcaoConversorMoeda.addActionListener(new ActionListener() {
-			
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				// TODO Auto-generated method stub
-				
-			}
-		});
 		
-		this.opcaoSair.addActionListener(new ActionListener() {
-
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				JOptionPane.showMessageDialog(null, "Tem certeza que deseja sair?");
-				System.exit(0);
-			}
-		});
-	}
-
-	private void inicializaAtributosAdicionaOpcoesNoMenu() {
 		// inicializar atributos
-		this.conversorDeMoeda = "Conversor de Moeda";
-		this.conversorDeTemperatura = "Conversor de Temperatura";
 		this.menuBar = new JMenuBar();
 		this.menu = new JMenu("Escolha uma operação:");
 		this.opcaoConversorMoeda = new JMenuItem(this.conversorDeMoeda);
@@ -72,6 +40,31 @@ public class ConversorMenu extends JFrame {
 
 		// adiociona o menu em menubar
 		this.menuBar.add(menu);
+		
+		JPanel painel = new JPanel();
+
+		this.exibeMenu();
+		painel.add(this.menuBar);
+		add(painel);
 	}
 
+	private void exibeMenu() {
+		this.opcaoConversorMoeda.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				String input = JOptionPane.showInputDialog("Insira um valor:");
+				JOptionPane.showMessageDialog(null, "Resultado: " + input);
+			}
+		});
+
+		this.opcaoSair.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				JOptionPane.showMessageDialog(null, "Tem certeza que deseja sair?");
+				System.exit(0);
+			}
+		});
+	}
 }
