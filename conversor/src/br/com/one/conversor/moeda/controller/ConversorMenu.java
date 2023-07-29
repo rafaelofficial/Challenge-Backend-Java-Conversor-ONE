@@ -55,6 +55,11 @@ public class ConversorMenu extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				String input = JOptionPane.showInputDialog("Insira um valor:");
 
+				/**
+				 * TODO: 
+				 * 1. Converter a entrada do usuário para valor monetário (Double ou BigInteger);
+				 * 2. Fazer a lógica para a conversão das moedas;
+				 */
 				chamarMenuDeEscolha(input);
 			}
 		});
@@ -74,6 +79,6 @@ public class ConversorMenu extends JFrame {
 				"De Euro a Reais", "De Libras a Reais" };
 
 		JOptionPane.showInputDialog(null, "Escolha a moeda para a qual você deseja girar seu dinheiro:", "Conversão",
-				JOptionPane.INFORMATION_MESSAGE, null, opcoes, "Escolha");
+				JOptionPane.PLAIN_MESSAGE, null, opcoes, opcoes[0]);
 	}
 }
