@@ -10,7 +10,7 @@ import com.google.gson.Gson;
 
 import br.com.one.conversor.moeda.exception.MoedaNaoExisteException;
 import br.com.one.conversor.moeda.interfaces.ICotacaoEmTempoReal;
-import br.com.one.conversor.moeda.model.ConversorDeMoeda;
+import br.com.one.conversor.moeda.model.ConversorDeMoedaModel;
 import br.com.one.conversor.moeda.util.CotacaoEmTempoRealUtil;
 
 /**
@@ -23,7 +23,7 @@ public class CotacaoEmTempoRealService implements ICotacaoEmTempoReal {
 	private static final int statusCode = 200;
 	private HttpURLConnection urlConexao;
 
-	public ConversorDeMoeda buscarCotacao(String tipoDeMoeda) throws IOException {
+	public ConversorDeMoedaModel buscarCotacao(String tipoDeMoeda) throws IOException {
 		return buscarCotacaoEmTempoReal(tipoDeMoeda);
 	}
 
@@ -31,7 +31,7 @@ public class CotacaoEmTempoRealService implements ICotacaoEmTempoReal {
 	 * Deve retornar a última ocorrência das moedas selecionadas em tempo real.
 	 */
 	@Override
-	public ConversorDeMoeda buscarCotacaoEmTempoReal(String avaliacao) throws IOException {
+	public ConversorDeMoedaModel buscarCotacaoEmTempoReal(String avaliacao) throws IOException {
 
 		String api = webservice + avaliacao;
 
@@ -49,10 +49,10 @@ public class CotacaoEmTempoRealService implements ICotacaoEmTempoReal {
 		}
 	}
 
-	private ConversorDeMoeda deserializarResponseBody(BufferedReader responseBody) throws IOException {
+	private ConversorDeMoedaModel deserializarResponseBody(BufferedReader responseBody) throws IOException {
 		Gson gson = new Gson();
 		String jsonString = CotacaoEmTempoRealUtil.deserializar(responseBody);
 
-		return gson.fromJson(jsonString, ConversorDeMoeda.class);
+		return gson.fromJson(jsonString, ConversorDeMoedaModel.class);
 	}
 }
