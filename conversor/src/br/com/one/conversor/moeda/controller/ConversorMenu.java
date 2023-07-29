@@ -25,7 +25,7 @@ public class ConversorMenu extends JFrame {
 		setSize(400, 300);
 		setTitle("Menu");
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
-		
+
 		// inicializar atributos
 		this.menuBar = new JMenuBar();
 		this.menu = new JMenu("Escolha uma operação:");
@@ -40,7 +40,7 @@ public class ConversorMenu extends JFrame {
 
 		// adiociona o menu em menubar
 		this.menuBar.add(menu);
-		
+
 		JPanel painel = new JPanel();
 
 		this.exibeMenu();
@@ -54,7 +54,8 @@ public class ConversorMenu extends JFrame {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				String input = JOptionPane.showInputDialog("Insira um valor:");
-				JOptionPane.showInputDialog(null, "Escolha a moeda para a qual você deseja girar seu dinheiro:");
+
+				chamarMenuDeEscolha(input);
 			}
 		});
 
@@ -66,5 +67,13 @@ public class ConversorMenu extends JFrame {
 				System.exit(0);
 			}
 		});
+	}
+
+	private void chamarMenuDeEscolha(String input) {
+		Object[] opcoes = { "De Reais a Dólares", "De Reais a Euros", "De Reais a Libras", "De Dólares a Reais",
+				"De Euro a Reais", "De Libras a Reais" };
+
+		JOptionPane.showInputDialog(null, "Escolha a moeda para a qual você deseja girar seu dinheiro:", "Conversão",
+				JOptionPane.INFORMATION_MESSAGE, null, opcoes, "Escolha");
 	}
 }
