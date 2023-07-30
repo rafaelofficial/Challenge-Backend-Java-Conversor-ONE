@@ -11,7 +11,7 @@ public class CotacaoEmTempoRealUtil {
 		String jsonString = "";
 		
 		while ((setResponseBody(bufferedReader.readLine())) != null) {
-			setResponseBody(getResponseBody() + jsonString);
+			jsonString += setResponseBody(getResponseBody());
 		}
 		
 		return jsonString;
