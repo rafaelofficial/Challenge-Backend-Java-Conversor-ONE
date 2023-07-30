@@ -2,9 +2,9 @@ package br.com.one.conversor.moeda.interfaces;
 
 import java.io.IOException;
 
-import br.com.one.conversor.moeda.model.ConversorDeMoedaModel;
+import br.com.one.conversor.moeda.model.MoedaModel;
 
 public interface ICotacaoEmTempoReal {
 
-	ConversorDeMoedaModel buscarCotacaoEmTempoReal(String moeda) throws IOException;
+	MoedaModel buscarCotacaoEmTempoReal(String moeda) throws IOException;
 }
