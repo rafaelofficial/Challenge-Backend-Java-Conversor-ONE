@@ -2,9 +2,9 @@ package br.com.one.conversor.moeda.interfaces;
 
 import java.io.IOException;
 
-import br.com.one.conversor.moeda.model.MoedaModel;
+import com.google.gson.JsonObject;
 
 public interface ICotacaoEmTempoReal {
 
-	MoedaModel buscarCotacaoEmTempoReal(String moeda) throws IOException;
+	JsonObject buscarCotacaoEmTempoReal(String moeda) throws IOException;
 }
