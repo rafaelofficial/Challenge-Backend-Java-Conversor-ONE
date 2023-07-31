@@ -10,6 +10,8 @@ import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
+import br.com.one.conversor.moeda.services.ConversorMoedaService;
+
 public class ConversorMenu extends JFrame {
 	private static final long serialVersionUID = 1L;
 
@@ -18,8 +20,9 @@ public class ConversorMenu extends JFrame {
 	private JMenuItem opcaoConversorMoeda;
 	private JMenuItem opcaoConversorTemperatura;
 	private JMenuItem opcaoSair;
-	private String conversorDeMoeda = "Conversor de Moeda";
+	private String conversorMoeda = "Conversor de Moeda";
 	private String conversorDeTemperatura = "Conversor de Temperatura";
+	private ConversorMoedaService conversorMoedaService;
 
 	public ConversorMenu() {
 		setSize(400, 300);
@@ -29,9 +32,10 @@ public class ConversorMenu extends JFrame {
 		// inicializar atributos
 		this.menuBar = new JMenuBar();
 		this.menu = new JMenu("Escolha uma operação:");
-		this.opcaoConversorMoeda = new JMenuItem(this.conversorDeMoeda);
+		this.opcaoConversorMoeda = new JMenuItem(this.conversorMoeda);
 		this.opcaoConversorTemperatura = new JMenuItem(this.conversorDeTemperatura);
 		this.opcaoSair = new JMenuItem("Sair");
+		this.conversorMoedaService = new ConversorMoedaService();
 
 		// adiciona as itens do menu/opções no menu
 		this.menu.add(opcaoConversorMoeda);
@@ -53,14 +57,9 @@ public class ConversorMenu extends JFrame {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				String input = JOptionPane.showInputDialog("Insira um valor:");
-
-				/**
-				 * TODO: 
-				 * 1. Converter a entrada do usuário para valor monetário (Double ou BigInteger);
-				 * 2. Fazer a lógica para a conversão das moedas;
-				 */
-				chamarMenuDeEscolha(input);
+				String entrada = JOptionPane.showInputDialog("Insira um valor:");
+				double parseEntrada = Double.parseDouble(entrada);
+				chamarMenuDeEscolha(parseEntrada);
 			}
 		});
 
@@ -74,11 +73,30 @@ public class ConversorMenu extends JFrame {
 		});
 	}
 
-	private void chamarMenuDeEscolha(String input) {
+	private void chamarMenuDeEscolha(double valor) {
 		Object[] opcoes = { "De Reais a Dólares", "De Reais a Euros", "De Reais a Libras", "De Dólares a Reais",
 				"De Euro a Reais", "De Libras a Reais" };
 
-		JOptionPane.showInputDialog(null, "Escolha a moeda para a qual você deseja girar seu dinheiro:", "Conversão",
-				JOptionPane.PLAIN_MESSAGE, null, opcoes, opcoes[0]);
+		String selecionarOpcao = JOptionPane
+				.showInputDialog(null, "Escolha a moeda para a qual você deseja girar seu dinheiro:", "Conversão",
+						JOptionPane.PLAIN_MESSAGE, null, opcoes, opcoes[0])
+				.toString();
+
+		switch (selecionarOpcao) {
+		case "De Reais a Dólares":
+			this.conversorMoedaService.conversorRealDolar(valor);
+			break;
+		case "De Reais a Euros":
+			this.conversorMoedaService.conversorRealEuro(valor);
+			break;
+		case "De Reais a Libras":
+			this.conversorMoedaService.conversorRealLibra(valor);
+			break;
+		case "De Dólares a Reais":
+			this.conversorMoedaService.conversorDolarReal(valor);
+		default:
+			JOptionPane.showMessageDialog(null, "Moeda inválida, tente novamente!", null, JOptionPane.ERROR_MESSAGE);
+			break;
+		}
 	}
 }
