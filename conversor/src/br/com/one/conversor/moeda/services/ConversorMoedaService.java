@@ -24,7 +24,7 @@ public class ConversorMoedaService {
 	}
 
 	private double converterMoedas(String paresDeMoedas, double valor) {
-		if (Objects.nonNull(paresDeMoedas)) {
+		if (Objects.isNull(paresDeMoedas)) {
 			JOptionPane.showMessageDialog(null, "Conversão não existe, tente novamente", null,
 					JOptionPane.ERROR_MESSAGE);
 			throw new ConversaoNaoExiste("Conversão não existe");
@@ -64,12 +64,11 @@ public class ConversorMoedaService {
 	/** converte outras moedas para Real */
 
 	public void conversorDolarReal(double valor) {
-		double dolarReal = valor / converterMoedas("USD-BRL,", valor);
-		String formatadorMoeda = formatadorMoeda(Locale.ENGLISH, dolarReal);
+		double dolarReal = valor / converterMoedas("USD-BRL", valor);
+		String formatadorMoeda = formatadorMoeda(Locale.US, dolarReal);
 
-		JOptionPane.showMessageDialog(null, "O valor da conversão é de " + formatadorMoeda + " Real Brasileiro",
+		JOptionPane.showMessageDialog(null, "O valor da conversão é de R" + formatadorMoeda + " Real Brasileiro",
 				"Menssagem", JOptionPane.INFORMATION_MESSAGE);
-
 	}
 
 }
