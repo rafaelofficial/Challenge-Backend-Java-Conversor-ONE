@@ -94,6 +94,7 @@ public class ConversorMenu extends JFrame {
 			break;
 		case "De Dólares a Reais":
 			this.conversorMoedaService.conversorDolarReal(valor);
+			break;
 		default:
 			JOptionPane.showMessageDialog(null, "Moeda inválida, tente novamente!", null, JOptionPane.ERROR_MESSAGE);
 			break;
