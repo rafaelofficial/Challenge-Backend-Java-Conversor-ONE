@@ -22,7 +22,7 @@ public class CotacaoTempoRealService extends Cotacao implements ICotacaoEmTempoR
 	// endpoint: "https://economia.awesomeapi.com.br/json/last/:moedas"
 	// parametros: "BRL-USD,BRL-EUR,USD-BRL,EUR-BRL,GBP-BRL,ARS-BRL,CLP-BRL"
 	private static final String webservice = "https://economia.awesomeapi.com.br/json/last/";
-	private static final int statusCode = 200;
+	private static final int successStatusCode = 200;
 	private HttpURLConnection urlConexao;
 	private Gson gson = new Gson();
 
@@ -41,8 +41,9 @@ public class CotacaoTempoRealService extends Cotacao implements ICotacaoEmTempoR
 			URL url = new URL(api);
 			this.urlConexao = (HttpURLConnection) url.openConnection();
 			this.urlConexao.setRequestMethod("GET");
+			int codigoDeResposta = this.urlConexao.getResponseCode();
 
-			if (this.urlConexao.getResponseCode() != statusCode) {
+			if (codigoDeResposta != successStatusCode) {
 				throw new MoedaNaoExisteException("Código de Resposta: " + this.urlConexao.getResponseCode());
 			}
 
