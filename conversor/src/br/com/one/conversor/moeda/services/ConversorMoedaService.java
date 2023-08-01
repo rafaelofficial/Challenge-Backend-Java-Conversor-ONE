@@ -10,8 +10,9 @@ import com.google.gson.JsonObject;
 
 import br.com.one.conversor.moeda.enuns.ParConversao;
 import br.com.one.conversor.moeda.exception.ConversaoNaoExiste;
+import br.com.one.conversor.moeda.interfaces.IConversorMoedas;
 
-public class ConversorMoedaService {
+public class ConversorMoedaService implements IConversorMoedas {
 
 	private JsonObject taxaCambio;
 
@@ -36,7 +37,8 @@ public class ConversorMoedaService {
 	}
 
 	/** converte Real para outras moedas */
-
+	
+	@Override
 	public void conversorRealDolar(double valor) {
 		double realParaDolar = converterMoedas(ParConversao.REAL_PARA_DOLAR.getDescricao(), valor);
 		String formatadorMoeda = formatadorMoeda(Locale.US, realParaDolar);
@@ -45,6 +47,7 @@ public class ConversorMoedaService {
 				"Menssagem", JOptionPane.INFORMATION_MESSAGE);
 	}
 
+	@Override
 	public void conversorRealEuro(double valor) {
 		double realEuro = valor / converterMoedas(ParConversao.REAL_PARA_EURO.getDescricao(), valor);
 		String formatadorMoeda = formatadorMoeda(Locale.FRANCE, realEuro);
@@ -53,6 +56,7 @@ public class ConversorMoedaService {
 				JOptionPane.INFORMATION_MESSAGE);
 	}
 
+	@Override
 	public void conversorRealLibra(double valor) {
 		double realLibra = valor / converterMoedas(ParConversao.REAL_PARA_LIBRA.getDescricao(), valor);
 		String formatadorMoeda = formatadorMoeda(Locale.UK, realLibra);
@@ -63,6 +67,7 @@ public class ConversorMoedaService {
 
 	/** converte outras moedas para Real */
 
+	@Override
 	public void conversorDolarReal(double valor) {
 		double dolarReal = valor / converterMoedas(ParConversao.DOLAR_PARA_REAL.getDescricao(), valor);
 		String formatadorMoeda = formatadorMoeda(Locale.US, dolarReal);
@@ -71,6 +76,7 @@ public class ConversorMoedaService {
 				"Menssagem", JOptionPane.INFORMATION_MESSAGE);
 	}
 
+	@Override
 	public void conversorEuroReal(double valor) {
 		double euroReal = valor / converterMoedas(ParConversao.EURO_PARA_REAL.getDescricao(), valor);
 		String formatadorMoeda = formatadorMoeda(Locale.US, euroReal);
@@ -79,6 +85,7 @@ public class ConversorMoedaService {
 				"Menssagem", JOptionPane.INFORMATION_MESSAGE);
 	}
 
+	@Override
 	public void conversorLibraReal(double valor) {
 		double libraReal = valor / converterMoedas(ParConversao.EURO_PARA_REAL.getDescricao(), valor);
 		String formatadorMoeda = formatadorMoeda(Locale.US, libraReal);
