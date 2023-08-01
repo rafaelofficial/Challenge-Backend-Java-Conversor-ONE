@@ -58,6 +58,12 @@ public class ConversorMenu extends JFrame {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				String entrada = JOptionPane.showInputDialog("Insira um valor:");
+
+				if (entrada.matches("[^0-9]+")) {
+					JOptionPane.showMessageDialog(null, "Valor inválido!", null, JOptionPane.ERROR_MESSAGE);
+					return;
+				}
+
 				double parseEntrada = Double.parseDouble(entrada);
 				chamarMenuDeEscolha(parseEntrada);
 			}
@@ -94,6 +100,12 @@ public class ConversorMenu extends JFrame {
 			break;
 		case "De Dólares a Reais":
 			this.conversorMoedaService.conversorDolarReal(valor);
+			break;
+		case "De Euro a Reais":
+			this.conversorMoedaService.conversorEuroReal(valor);
+			break;
+		case "De Libras a Reais":
+			this.conversorMoedaService.conversorLibraReal(valor);
 			break;
 		default:
 			JOptionPane.showMessageDialog(null, "Moeda inválida, tente novamente!", null, JOptionPane.ERROR_MESSAGE);
