@@ -17,10 +17,8 @@ import br.com.one.conversor.moeda.util.CotacaoEmTempoRealUtil;
 /**
  * precisa rever a entender o que acontece aqui nessa classe
  */
-public class CotacaoTempoRealService extends Cotacao implements ICotacaoEmTempoReal {
-	private static final long serialVersionUID = 1L;
-	// endpoint: "https://economia.awesomeapi.com.br/json/last/:moedas"
-	// parametros: "BRL-USD,BRL-EUR,USD-BRL,EUR-BRL,GBP-BRL,ARS-BRL,CLP-BRL"
+public class CotacaoTempoRealService implements ICotacaoEmTempoReal {
+
 	private static final String webservice = "https://economia.awesomeapi.com.br/json/last/";
 	private static final int successStatusCode = 200;
 	private HttpURLConnection urlConexao;
